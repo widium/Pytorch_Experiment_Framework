@@ -142,7 +142,6 @@ class ExperimentSaver:
             print(f"[INFO] : Saving Graph of Network Architecture in : [{self.summary_file}]")
             print(f"[INFO] : Saving Experiment Information in : [{self.summary_file}]") 
             file.write(self.experiment_summary)
-            file.close()
         
         print(f"[INFO] : Saving {self.experiment_name} Successfully !")
 

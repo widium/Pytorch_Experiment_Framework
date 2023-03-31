@@ -5,11 +5,24 @@ from contextlib import redirect_stdout
 import torch
 from torch.nn import Module
 
+from time import perf_counter
+from torch.types import Device
 
-def model_summary_to_string(model : Module,
-                            batched_input_shape: tuple)->str:
-    
-    # Get model summary as a string
+# ================================================================================================ #
+
+def model_summary_to_string(
+    model : Module,
+    batched_input_shape: tuple
+)->str:
+    """Catch the torchinfo summary in stdout and write it into string
+
+    Args:
+        model (Module): model for torch.summary()
+        batched_input_shape (tuple): input shape of model
+
+    Returns:
+        str: output of summary() function into string
+    """
     reader = StringIO()
     
     with redirect_stdout(new_target=reader):
@@ -25,12 +38,13 @@ def model_summary_to_string(model : Module,
     string = reader.getvalue()
     return (string)
 
-from time import perf_counter
-from torch.types import Device
+# ================================================================================================ #
 
-def compute_speed_of_model(model : Module,
-                           device : Device,
-                           batched_input_size: tuple):
+def compute_speed_of_model(
+    model : Module,
+    device : Device,
+    batched_input_size: tuple
+)->float:
     """Compute Speed of Model Inference with Dummy Data
 
     Args:
@@ -65,6 +79,7 @@ def compute_speed_of_model(model : Module,
 
     return (total_ms)
 
+# ================================================================================================ #
 
 def compute_size_of_model(model : Module)->dict:
     """compute the detailed size of Pytorch Model
@@ -97,9 +112,12 @@ def compute_size_of_model(model : Module)->dict:
     
     return (size)
 
+# ================================================================================================ #
 
 def count_parameters(model : Module)->int:
 
     parameters_per_tensor = [param.numel() for param in model.parameters()]
     nbr_parameters = sum(parameters_per_tensor)
     return (nbr_parameters)
+
+# ================================================================================================ #

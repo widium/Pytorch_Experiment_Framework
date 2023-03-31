@@ -123,8 +123,11 @@ class ExperimentSummary:
         size += f"- Model Utils size: {self.model_size['buffer']:.3f} (MB)\n"
         size += f"- Model Entire Size: {self.model_size['entire']:.3f} (MB)\n"
 
-        notes += f"\n***** NOTES *****\n"
+        notes = f"\n***** NOTES *****\n"
         notes += f"- {self.extras_info}\n"
+        
+        network = f"\n***** MODEL NETWORK ARCHITECTURE *****\n"
+        network += self.model_network
         
         # ----------------- Store all F-string into global string ----------------- #
         
@@ -136,7 +139,7 @@ class ExperimentSummary:
                 speed_performance, 
                 size,
                 notes,
-                self.model_network
+                network
             ]
         )
         
