@@ -1,6 +1,6 @@
 # Framework
-![](https://i.imgur.com/G94ES7K.png)
 ![](https://i.imgur.com/AmDCwzR.png)
+![](https://i.imgur.com/G94ES7K.png)
 ## Package Usage
 ~~~bash
 saver
@@ -13,7 +13,7 @@ saver
 2 directories, 4 files
 ~~~
 ![](https://i.imgur.com/6Q576Dj.png)
-#### Training Model and Get [HistoricalTraining](https://github.com/widium/Historical_Training)
+### Training Model and Get [HistoricalTraining](https://github.com/widium/Historical_Training)
 ~~~python
 from training.train import train
 from torch.nn import CrossEntropyLoss
@@ -39,7 +39,7 @@ history = train(
     epochs=5
 )
 ~~~
-#### Initialize Experiment with location and name
+### Initialize Experiment with location and name
 ~~~python
 from saver.experiment import ExperimentSaver
 
@@ -49,7 +49,7 @@ saver = ExperimentSaver(
     location="experiments/"
 )
 ~~~
-#### Create and Save Experiment with lot of Information
+### Create and Save Experiment with lot of Information
 ~~~python
 saver.create_experiment(
     model=model,
@@ -68,8 +68,28 @@ saver.create_experiment(
     extras_info="Add Regularization on last Layer give me Better Accuracy on validation set"
 )
 ~~~
-#### Output
+method detail here : [`ExperimentSaver.create_experiment()`](/saver/experiment.py)
 ~~~python
+def create_experiment(
+    self,
+    model : Module,
+    input_shape : tuple,
+    dataset_size : str,
+    batch_size : int,
+    epochs : int,
+    train_accuracy : float,
+    test_accuracy : float,
+    device : Device,
+    optimizer : Optimizer = None,
+    training_time : float = None,
+    overfitting_diag : List[str] = None,
+    underfitting_diag : List[str] = None,
+    figures : List[figure] = None,
+    extras_info : str = None
+)->None:
+~~~
+### Output
+~~~bash
 [INFO] : Initialize experiment_1
 [INFO] : Create [experiments/experiment_1] Directory
 [INFO] : Saving EfficientNetFoodClassifier with 4,011,391 Parameters
