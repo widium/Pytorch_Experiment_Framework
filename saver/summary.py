@@ -1,4 +1,14 @@
-
+# *************************************************************************** #
+#                                                                              #
+#    summary.py                                                                #
+#                                                                              #
+#    By: Widium <ebennace@student.42lausanne.ch>                               #
+#    Github : https://github.com/widium                                        #
+#                                                                              #
+#    Created: 2023/03/31 20:41:05 by Widium                                    #
+#    Updated: 2023/03/31 20:41:05 by Widium                                    #
+#                                                                              #
+# **************************************************************************** #
 
 from typing import List, Tuple
 from torch.types import Device

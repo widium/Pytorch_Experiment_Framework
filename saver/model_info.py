@@ -1,3 +1,15 @@
+# *************************************************************************** #
+#                                                                              #
+#    model_info.py                                                             #
+#                                                                              #
+#    By: Widium <ebennace@student.42lausanne.ch>                               #
+#    Github : https://github.com/widium                                        #
+#                                                                              #
+#    Created: 2023/03/31 20:40:43 by Widium                                    #
+#    Updated: 2023/03/31 20:40:43 by Widium                                    #
+#                                                                              #
+# **************************************************************************** #
+
 from torchinfo import summary
 from io import StringIO
 from contextlib import redirect_stdout
