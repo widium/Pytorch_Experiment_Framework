@@ -115,7 +115,7 @@ def compute_size_of_model(model : Module)->dict:
     for buffer in model.buffers():
         size["buffer"] += buffer.nelement() * buffer.element_size()
 
-    # Convert to Bytes to MegaBytes
+    # Convert Bytes to MegaBytes
     size["params"] /= 1024**2
     size["buffer"] /= 1024**2
     

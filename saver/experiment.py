@@ -10,12 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-from typing import List, Tuple
+from typing import List
 from matplotlib.pyplot import figure
-from torchinfo import summary
 from torch.optim import Optimizer
-from io import StringIO
-from contextlib import redirect_stdout
 from torch.types import Device
 
 import torch
