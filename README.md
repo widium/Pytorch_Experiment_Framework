@@ -54,21 +54,31 @@ saver = ExperimentSaver(
 ~~~
 ### Create and Save Experiment with lot of Information
 ~~~python
+num_epochs = len(history["Epochs"])
+last_train_accuracy = history["Train Accuracy"][-1]
+last_test_accuracy = history["Val Accuracy"][-1]
+underfitting_diagnostic = history.diagnostic_results["Bias and UnderFitting"]
+overfitting_diagnostic = history.diagnostic_results["Bias and UnderFitting"]
+training_time = history["Training Time"]
+experiment_figures = [history.curve_figure]
+
+# ****************************************************
+
 saver.create_experiment(
     model=model,
-    input_shape=INPUT_SHAPE,
+    input_shape=(1, 3, 224, 224),
     dataset_size="10%",
     batch_size=BATCH_SIZE,
-    epochs=len(history["Epochs"]),
-    train_accuracy=history["Train Accuracy"][-1],
-    test_accuracy=history["Val Accuracy"][-1],
-    underfitting_diag=history.diagnostic_results["Bias and UnderFitting"],
-    overfitting_diag=history.diagnostic_results["Variance and OverFitting"],
-    figures=[history.curve_figure],
+    epochs=num_epochs,
+    train_accuracy=last_train_accuracy,
+    test_accuracy=last_test_accuracy,
+    underfitting_diag=underfitting_diagnostic,
+    overfitting_diag=overfitting_diagnostic,
+    figures=experiment_figures,
     optimizer=optimizer,
     device=device,
-    training_time=history["Training Time"],
-    extras_info="Add Regularization on last Layer give me Better Accuracy on validation set"
+    training_time=training_time,
+    extras_info=""
 )
 ~~~
 method detail here : [`ExperimentSaver.create_experiment()`](/saver/experiment.py)

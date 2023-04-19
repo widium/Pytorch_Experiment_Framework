@@ -87,13 +87,13 @@ class ExperimentSummary:
         
         self.model_network = model_summary_to_string(
             model=self.model,
-            batched_input_shape=(batch_size,) + input_shape
+            batched_input_shape=input_shape
         )
         
         self.model_speed = compute_speed_of_model(
             model=self.model,
             device=device,
-            batched_input_size=(1,) + input_shape
+            batched_input_size=input_shape
         )
         
         self.model_size = compute_size_of_model(model)

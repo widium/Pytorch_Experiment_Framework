@@ -1,0 +1,87 @@
+
+***** METRICS PERFORMANCE *****
+- Last Train Accuracy : 0.667
+- Last Test Accuracy : 0.828
+
+
+***** DIAGNOSTIC *****
+- Bias and UnderFitting : Medium Bias
+- Variance and OverFitting : Medium Bias
+
+
+***** LEARNING PARAMETERS *****
+- Training Dataset Size : 20%
+- Batch Size : 32
+- Number of Epochs : 1
+- Optimizer Parameters : {'lr': 0.01, 'betas': (0.9, 0.999), 'eps': 1e-08, 'weight_decay': 0, 'amsgrad': False, 'maximize': False, 'foreach': None, 'capturable': False, 'differentiable': False, 'fused': False}
+
+
+***** SPEED PERFORMANCE *****
+- Device in Training : cuda
+- Training Time : 5.194 second
+- Prediction Time : 5.893 ms
+
+
+***** MODEL SIZE *****
+- Total Parameters : 4,011,391
+- Model Parameters size: 15.302 (MB)
+- Model Utils size: 0.161 (MB)
+- Model Entire Size: 15.463 (MB)
+
+
+***** NOTES *****
+- 
+
+
+***** MODEL NETWORK ARCHITECTURE *****
+============================================================================================================================================
+Layer (type (var_name))                                      Input Shape          Output Shape         Param #              Trainable
+============================================================================================================================================
+EfficientNet (EfficientNet)                                  [1, 3, 224, 224]     [1, 3]               --                   Partial
+├─Sequential (features)                                      [1, 3, 224, 224]     [1, 1280, 7, 7]      --                   False
+│    └─Conv2dNormActivation (0)                              [1, 3, 224, 224]     [1, 32, 112, 112]    --                   False
+│    │    └─Conv2d (0)                                       [1, 3, 224, 224]     [1, 32, 112, 112]    (864)                False
+│    │    └─BatchNorm2d (1)                                  [1, 32, 112, 112]    [1, 32, 112, 112]    (64)                 False
+│    │    └─SiLU (2)                                         [1, 32, 112, 112]    [1, 32, 112, 112]    --                   --
+│    └─Sequential (1)                                        [1, 32, 112, 112]    [1, 16, 112, 112]    --                   False
+│    │    └─MBConv (0)                                       [1, 32, 112, 112]    [1, 16, 112, 112]    (1,448)              False
+│    └─Sequential (2)                                        [1, 16, 112, 112]    [1, 24, 56, 56]      --                   False
+│    │    └─MBConv (0)                                       [1, 16, 112, 112]    [1, 24, 56, 56]      (6,004)              False
+│    │    └─MBConv (1)                                       [1, 24, 56, 56]      [1, 24, 56, 56]      (10,710)             False
+│    └─Sequential (3)                                        [1, 24, 56, 56]      [1, 40, 28, 28]      --                   False
+│    │    └─MBConv (0)                                       [1, 24, 56, 56]      [1, 40, 28, 28]      (15,350)             False
+│    │    └─MBConv (1)                                       [1, 40, 28, 28]      [1, 40, 28, 28]      (31,290)             False
+│    └─Sequential (4)                                        [1, 40, 28, 28]      [1, 80, 14, 14]      --                   False
+│    │    └─MBConv (0)                                       [1, 40, 28, 28]      [1, 80, 14, 14]      (37,130)             False
+│    │    └─MBConv (1)                                       [1, 80, 14, 14]      [1, 80, 14, 14]      (102,900)            False
+│    │    └─MBConv (2)                                       [1, 80, 14, 14]      [1, 80, 14, 14]      (102,900)            False
+│    └─Sequential (5)                                        [1, 80, 14, 14]      [1, 112, 14, 14]     --                   False
+│    │    └─MBConv (0)                                       [1, 80, 14, 14]      [1, 112, 14, 14]     (126,004)            False
+│    │    └─MBConv (1)                                       [1, 112, 14, 14]     [1, 112, 14, 14]     (208,572)            False
+│    │    └─MBConv (2)                                       [1, 112, 14, 14]     [1, 112, 14, 14]     (208,572)            False
+│    └─Sequential (6)                                        [1, 112, 14, 14]     [1, 192, 7, 7]       --                   False
+│    │    └─MBConv (0)                                       [1, 112, 14, 14]     [1, 192, 7, 7]       (262,492)            False
+│    │    └─MBConv (1)                                       [1, 192, 7, 7]       [1, 192, 7, 7]       (587,952)            False
+│    │    └─MBConv (2)                                       [1, 192, 7, 7]       [1, 192, 7, 7]       (587,952)            False
+│    │    └─MBConv (3)                                       [1, 192, 7, 7]       [1, 192, 7, 7]       (587,952)            False
+│    └─Sequential (7)                                        [1, 192, 7, 7]       [1, 320, 7, 7]       --                   False
+│    │    └─MBConv (0)                                       [1, 192, 7, 7]       [1, 320, 7, 7]       (717,232)            False
+│    └─Conv2dNormActivation (8)                              [1, 320, 7, 7]       [1, 1280, 7, 7]      --                   False
+│    │    └─Conv2d (0)                                       [1, 320, 7, 7]       [1, 1280, 7, 7]      (409,600)            False
+│    │    └─BatchNorm2d (1)                                  [1, 1280, 7, 7]      [1, 1280, 7, 7]      (2,560)              False
+│    │    └─SiLU (2)                                         [1, 1280, 7, 7]      [1, 1280, 7, 7]      --                   --
+├─AdaptiveAvgPool2d (avgpool)                                [1, 1280, 7, 7]      [1, 1280, 1, 1]      --                   --
+├─Sequential (classifier)                                    [1, 1280]            [1, 3]               --                   True
+│    └─Dropout (0)                                           [1, 1280]            [1, 1280]            --                   --
+│    └─Linear (1)                                            [1, 1280]            [1, 3]               3,843                True
+============================================================================================================================================
+Total params: 4,011,391
+Trainable params: 3,843
+Non-trainable params: 4,007,548
+Total mult-adds (M): 384.59
+============================================================================================================================================
+Input size (MB): 0.60
+Forward/backward pass size (MB): 107.88
+Params size (MB): 16.05
+Estimated Total Size (MB): 124.53
+============================================================================================================================================
