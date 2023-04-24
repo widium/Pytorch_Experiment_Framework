@@ -1,6 +1,6 @@
 
 ***** METRICS PERFORMANCE *****
-- Last Train Accuracy : 0.931
+- Last Train Accuracy : 0.944
 - Last Test Accuracy : 0.865
 
 
@@ -18,8 +18,8 @@
 
 ***** SPEED PERFORMANCE *****
 - Device in Training : cuda
-- Training Time : 28.018 second
-- Prediction Time : 7.911 ms
+- Training Time : 28.937 second
+- Prediction Time : 7.172 ms
 
 
 ***** MODEL SIZE *****

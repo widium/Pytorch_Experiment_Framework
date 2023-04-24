@@ -132,14 +132,8 @@ class ExperimentSaver:
         self.experiment_summary = summarizer.build()
         self.model = model
         self.figures = figures
-        self.total_parameters = summarizer.total_parameters
-        self.summarizer = summarizer
         
         # ----------------- Saving all Information ----------------- # 
-        
-        print(f"[INFO] : Saving {self.model.__class__.__name__} with {self.total_parameters:,} Parameters")
-        print(f"[INFO] : Saving {self.model.__class__.__name__} as {self.model_name} in : [{self.model_path}]")
-        torch.save(obj=self.model, f=str(self.model_path))
         
         # Saving Figures
         if self.figures:

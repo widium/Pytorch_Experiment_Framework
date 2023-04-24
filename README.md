@@ -91,10 +91,6 @@ saver.create_experiment(
 ~~~
 ### Output
 ~~~bash
-[INFO] : Initialize experiment_0
-[INFO] : Create [experiments/experiment_0] Directory
-[INFO] : Saving EfficientNet with 4,011,391 Parameters
-[INFO] : Saving EfficientNet as efficient_net_b0 in : [experiments/experiment_0/efficient_net_b0.pth]
 [INFO] : Saving Figure : [experiments/experiment_0/fig_0]
 [INFO] : Saving Graph of Network Architecture in : [experiments/experiment_0/experiment_summary.txt]
 [INFO] : Saving Experiment Information in : [experiments/experiment_0/experiment_summary.txt]
@@ -104,15 +100,12 @@ saver.create_experiment(
 ~~~bash
 experiments
 ├── experiment_0
-│   ├── efficient_net_b0.pth
 │   ├── experiment_summary.txt
 │   └── fig_0.png
 ├── experiment_1
-│   ├── efficient_net_b0.pth
 │   ├── experiment_summary.txt
 │   └── fig_0.png
 ├── experiment_2
-│   ├── efficient_net_b0.pth
 │   ├── experiment_summary.txt
 │   └── fig_0.png
 └── log.txt

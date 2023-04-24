@@ -1,12 +1,12 @@
 
 ***** METRICS PERFORMANCE *****
-- Last Train Accuracy : 0.921
-- Last Test Accuracy : 0.882
+- Last Train Accuracy : 0.944
+- Last Test Accuracy : 0.865
 
 
 ***** DIAGNOSTIC *****
 - Bias and UnderFitting : Medium Bias
-- Variance and OverFitting : Low Variance, Good Generalization !
+- Variance and OverFitting : Medium Variance
 
 
 ***** LEARNING PARAMETERS *****
@@ -18,8 +18,8 @@
 
 ***** SPEED PERFORMANCE *****
 - Device in Training : cuda
-- Training Time : 28.199 second
-- Prediction Time : 5.901 ms
+- Training Time : 28.937 second
+- Prediction Time : 7.154 ms
 
 
 ***** MODEL SIZE *****
