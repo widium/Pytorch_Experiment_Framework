@@ -4,19 +4,20 @@
 ## Package Usage
 ~~~bash
 saver
-├── experiment.py
 ├── __init__.py
-├── model_info.py
 ├── __pycache__
+├── experiment.py
+├── log.py
+├── model_info.py
 └── summary.py
 
-2 directories, 4 files
+2 directories, 5 files
 ~~~
-![](https://i.imgur.com/6Q576Dj.png)
+![](https://i.imgur.com/XZvtey1.png)
 - [`ExperimentSaver()`](/saver/experiment.py)
 - [`ExperimentSummary()`](/saver/summary.py)
 
-### Training Model and Get [HistoricalTraining](https://github.com/widium/Historical_Training)
+### Training Model and Get [HistoricalTraining](https://github.com/widium/Pytorch-Training-Toolkit)
 ~~~python
 from training.train import train
 from torch.nn import CrossEntropyLoss
@@ -52,7 +53,13 @@ saver = ExperimentSaver(
     location="experiments/"
 )
 ~~~
-### Create and Save Experiment with lot of Information
+- output
+~~~
+[INFO] : Initialize experiment_2
+[INFO] : Create [experiments/experiment_2] Directory
+[INFO] : [experiments/log.txt] already initialized, append information inside
+~~~
+### Save Experiment with lot of Information
 method detail here : [`ExperimentSaver.create_experiment()`](/saver/experiment.py)
 ~~~python
 num_epochs = len(history["Epochs"])
@@ -71,8 +78,8 @@ saver.create_experiment(
     dataset_size="10%",
     batch_size=BATCH_SIZE,
     epochs=num_epochs,
-    train_accuracy=last_train_accuracy,
-    test_accuracy=last_test_accuracy,
+    last_train_accuracy=last_train_accuracy,
+    last_test_accuracy=last_test_accuracy,
     underfitting_diag=underfitting_diagnostic,
     overfitting_diag=overfitting_diagnostic,
     figures=experiment_figures,
@@ -104,7 +111,29 @@ experiments
 │   ├── efficient_net_b0.pth
 │   ├── experiment_summary.txt
 │   └── fig_0.png
+├── experiment_2
+│   ├── efficient_net_b0.pth
+│   ├── experiment_summary.txt
+│   └── fig_0.png
 └── log.txt
+~~~
+- Logfile 
+~~~text
+****** EXPERIMENT_0 ******
+- Path : [experiments/experiment_0]
+- Train Accuracy : 0.81
+- Test Accuracy : 0.84
 
-3 directories, 7 files
+
+****** EXPERIMENT_1 ******
+- Path : [experiments/experiment_1]
+- Train Accuracy : 0.89
+- Test Accuracy : 0.87
+
+
+****** EXPERIMENT_2 ******
+- Path : [experiments/experiment_2]
+- Train Accuracy : 0.96
+- Test Accuracy : 0.90
+
 ~~~
