@@ -1,0 +1,12 @@
+
+****** EXPERIMENT_0 ******
+- Path : [experiments/experiment_0]
+- Train Accuracy : 0.92
+- Test Accuracy : 0.88
+
+
+****** EXPERIMENT_1 ******
+- Path : [experiments/experiment_1]
+- Train Accuracy : 0.92
+- Test Accuracy : 0.88
+

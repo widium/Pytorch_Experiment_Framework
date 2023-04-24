@@ -37,8 +37,8 @@ class ExperimentSummary:
         dataset_size : str,
         batch_size : int,
         epochs : int,
-        train_accuracy : float,
-        test_accuracy : float,
+        last_train_accuracy : float,
+        last_test_accuracy : float,
         device : Device,
         optimizer : Optimizer = None,
         training_time : float = None,
@@ -74,8 +74,8 @@ class ExperimentSummary:
         self.dataset_size = dataset_size
         self.batch_size = batch_size
         self.epochs = epochs
-        self.train_accuracy = train_accuracy
-        self.test_accuracy = test_accuracy
+        self.last_train_accuracy = last_train_accuracy
+        self.last_test_accuracy = last_test_accuracy
         self.optimizer = optimizer
         self.training_time = training_time
         self.overfitting_diag = overfitting_diag
@@ -119,8 +119,8 @@ class ExperimentSummary:
         learning_parameters += f"- Optimizer Parameters : {self.optimizer.defaults if self.optimizer else None}\n"
 
         metrics_performance = f"\n***** METRICS PERFORMANCE *****\n"
-        metrics_performance += f"- Last Train Accuracy : {self.train_accuracy:.3f}\n"
-        metrics_performance += f"- Last Test Accuracy : {self.test_accuracy:.3f}\n"
+        metrics_performance += f"- Last Train Accuracy : {self.last_train_accuracy:.3f}\n"
+        metrics_performance += f"- Last Test Accuracy : {self.last_test_accuracy:.3f}\n"
         
         speed_performance = f"\n***** SPEED PERFORMANCE *****\n"
         speed_performance += f"- Device in Training : {self.device}\n"

@@ -20,6 +20,7 @@ from pathlib import Path
 from torch.nn import Module
 
 from .summary import ExperimentSummary
+from .log import check_log_file
 
 # ============================================================================== #
 
@@ -45,7 +46,8 @@ class ExperimentSaver:
         self.model_name = model_name
         self.experiment_name = experiment_name
         
-        self.experiment_path = Path(location) / experiment_name
+        self.root_path = Path(location)
+        self.experiment_path = self.root_path / experiment_name
         self.model_path = self.experiment_path / f"{self.model_name}.pth"
         self.summary_file = self.experiment_path / "experiment_summary.txt"
         
@@ -61,6 +63,7 @@ class ExperimentSaver:
             print(f"[INFO] : Create [{self.experiment_path}] Directory")
             self.experiment_path.mkdir(parents=True, exist_ok=True)
             self.is_initialize = True
+            self.log_path = check_log_file(root_path=self.root_path)
 
 # ============================================================================== #
 
@@ -71,8 +74,8 @@ class ExperimentSaver:
         dataset_size : str,
         batch_size : int,
         epochs : int,
-        train_accuracy : float,
-        test_accuracy : float,
+        last_train_accuracy : float,
+        last_test_accuracy : float,
         device : Device,
         optimizer : Optimizer = None,
         training_time : float = None,
@@ -110,8 +113,8 @@ class ExperimentSaver:
         
         summarizer = ExperimentSummary(
             model=model,
-            train_accuracy=train_accuracy,
-            test_accuracy=test_accuracy,
+            last_train_accuracy=last_train_accuracy,
+            last_test_accuracy=last_test_accuracy,
             underfitting_diag=underfitting_diag,
             overfitting_diag=overfitting_diag,
             figures=figures,
@@ -152,5 +155,14 @@ class ExperimentSaver:
             file.write(self.experiment_summary)
         
         print(f"[INFO] : Saving {self.experiment_name} Successfully !")
+        
+        log_info = f"\n****** {self.experiment_name.upper()} ******\n"
+        log_info += f"- Path : [{self.experiment_path}]\n"
+        log_info += f"- Train Accuracy : {last_train_accuracy:.2f}\n"
+        log_info += f"- Test Accuracy : {last_test_accuracy:.2f}\n\n"
+
+        with self.log_path.open("a") as file:
+            file.write(log_info)
+            print(f"[INFO] : Append {self.experiment_name} information in [{self.log_path}]")
 
 # ============================================================================== #

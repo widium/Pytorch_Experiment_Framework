@@ -47,20 +47,21 @@ history = train(
 from saver.experiment import ExperimentSaver
 
 saver = ExperimentSaver(
-    experiment_name="experiment_1",
-    model_name="model_1",
+    experiment_name="experiment_0",
+    model_name="efficient_net_b0",
     location="experiments/"
 )
 ~~~
 ### Create and Save Experiment with lot of Information
+method detail here : [`ExperimentSaver.create_experiment()`](/saver/experiment.py)
 ~~~python
 num_epochs = len(history["Epochs"])
 last_train_accuracy = history["Train Accuracy"][-1]
 last_test_accuracy = history["Val Accuracy"][-1]
-underfitting_diagnostic = history.diagnostic_results["Bias and UnderFitting"]
-overfitting_diagnostic = history.diagnostic_results["Bias and UnderFitting"]
+underfitting_diagnostic = history["Bias and UnderFitting"]
+overfitting_diagnostic = history["Bias and UnderFitting"]
 training_time = history["Training Time"]
-experiment_figures = [history.curve_figure]
+experiment_figures = [history["Curve Figure"]]
 
 # ****************************************************
 
@@ -81,47 +82,29 @@ saver.create_experiment(
     extras_info=""
 )
 ~~~
-method detail here : [`ExperimentSaver.create_experiment()`](/saver/experiment.py)
-~~~python
-def create_experiment(
-    self,
-    model : Module,
-    input_shape : tuple,
-    dataset_size : str,
-    batch_size : int,
-    epochs : int,
-    train_accuracy : float,
-    test_accuracy : float,
-    device : Device,
-    optimizer : Optimizer = None,
-    training_time : float = None,
-    overfitting_diag : List[str] = None,
-    underfitting_diag : List[str] = None,
-    figures : List[figure] = None,
-    extras_info : str = None
-)->None:
-~~~
 ### Output
 ~~~bash
-[INFO] : Initialize experiment_1
-[INFO] : Create [experiments/experiment_1] Directory
-[INFO] : Saving EfficientNetFoodClassifier with 4,011,391 Parameters
-[INFO] : Saving EfficientNetFoodClassifier as model_1 in : [experiments/experiment_1/model_1.pth]
-[INFO] : Saving Figure : [experiments/experiment_1/fig_0]
-[INFO] : Saving Graph of Network Architecture in : [experiments/experiment_1/experiment_summary.txt]
-[INFO] : Saving Experiment Information in : [experiments/experiment_1/experiment_summary.txt]
-[INFO] : Saving experiment_1 Successfully !
+[INFO] : Initialize experiment_0
+[INFO] : Create [experiments/experiment_0] Directory
+[INFO] : Saving EfficientNet with 4,011,391 Parameters
+[INFO] : Saving EfficientNet as efficient_net_b0 in : [experiments/experiment_0/efficient_net_b0.pth]
+[INFO] : Saving Figure : [experiments/experiment_0/fig_0]
+[INFO] : Saving Graph of Network Architecture in : [experiments/experiment_0/experiment_summary.txt]
+[INFO] : Saving Experiment Information in : [experiments/experiment_0/experiment_summary.txt]
+[INFO] : Saving experiment_0 Successfully !
+[INFO] : Append experiment_0 information in [experiments/log.txt]
 ~~~
 ~~~bash
 experiments
 ├── experiment_0
+│   ├── efficient_net_b0.pth
 │   ├── experiment_summary.txt
-│   ├── fig_0.png
-│   └── model_0.pth
-└── experiment_1
-    ├── experiment_summary.txt
-    ├── fig_0.png
-    └── model_1.pth
+│   └── fig_0.png
+├── experiment_1
+│   ├── efficient_net_b0.pth
+│   ├── experiment_summary.txt
+│   └── fig_0.png
+└── log.txt
 
-3 directories, 6 files
+3 directories, 7 files
 ~~~
