@@ -10,3 +10,9 @@
 - Train Accuracy : 0.92
 - Test Accuracy : 0.88
 
+
+****** EXPERIMENT_2 ******
+- Path : [experiments/experiment_2]
+- Train Accuracy : 0.93
+- Test Accuracy : 0.86
+

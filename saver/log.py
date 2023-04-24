@@ -28,3 +28,20 @@ def check_log_file(root_path : str)->bool:
         return (log_path)
 
 # ================================================================================================ #
+
+def append_info_in_log_file(
+    logfile_path : Path,
+    experiment_path : Path,
+    experiment_name : str,
+    last_train_accuracy : float,
+    last_test_accuracy : float
+)->None:
+    
+    log_info = f"\n****** {experiment_name.upper()} ******\n"
+    log_info += f"- Path : [{experiment_path}]\n"
+    log_info += f"- Train Accuracy : {last_train_accuracy:.2f}\n"
+    log_info += f"- Test Accuracy : {last_test_accuracy:.2f}\n\n"
+
+    with logfile_path.open("a") as file:
+        file.write(log_info)
+        print(f"[INFO] : Append {experiment_name} information in [{logfile_path}]")

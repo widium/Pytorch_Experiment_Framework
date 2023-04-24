@@ -21,6 +21,7 @@ from torch.nn import Module
 
 from .summary import ExperimentSummary
 from .log import check_log_file
+from .log import append_info_in_log_file
 
 # ============================================================================== #
 
@@ -156,13 +157,14 @@ class ExperimentSaver:
         
         print(f"[INFO] : Saving {self.experiment_name} Successfully !")
         
-        log_info = f"\n****** {self.experiment_name.upper()} ******\n"
-        log_info += f"- Path : [{self.experiment_path}]\n"
-        log_info += f"- Train Accuracy : {last_train_accuracy:.2f}\n"
-        log_info += f"- Test Accuracy : {last_test_accuracy:.2f}\n\n"
-
-        with self.log_path.open("a") as file:
-            file.write(log_info)
-            print(f"[INFO] : Append {self.experiment_name} information in [{self.log_path}]")
+        # ----------------- Update Log File ----------------- # 
+        
+        append_info_in_log_file(
+            logfile_path=self.log_path,
+            experiment_path=self.experiment_path,
+            experiment_name=self.experiment_name,
+            last_train_accuracy=last_train_accuracy,
+            last_test_accuracy=last_test_accuracy,
+        )
 
 # ============================================================================== #
